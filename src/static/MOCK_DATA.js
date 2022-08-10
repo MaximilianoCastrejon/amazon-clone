@@ -1,4 +1,4 @@
-[{"title":"Diverse 3rd generation complexity","price":42.59,"rating":1},
+export const stockData = [{"title":"Diverse 3rd generation complexity","price":42.59,"rating":1},
 {"title":"Synergized explicit data-warehouse","price":94.24,"rating":2},
 {"title":"Virtual empowering framework","price":55.51,"rating":1},
 {"title":"Horizontal exuding hardware","price":73.65,"rating":2},
