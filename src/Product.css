@@ -37,6 +37,7 @@
 
 .product__price {
   margin-top: 5px;
+  margin-bottom: 0;
 }
 
 .product > button {
@@ -55,4 +56,5 @@
 
   white-space: nowrap; /* paragraph to one line */
   overflow: hidden; /* older browsers */
+  margin-bottom: 0;
 }

@@ -2,7 +2,8 @@ import React from "react";
 import "./Checkout.css";
 import Subtotal from "./Subtotal";
 
-function Checkout() {
+function Checkout(props) {
+  const { cartItems, onAdd, onRemove } = props;
   return (
     <div className="checkout">
       <div className="checkout__left">
@@ -15,8 +16,12 @@ function Checkout() {
           <h2 className="checkout__title">Your shopping basket</h2>
         </div>
       </div>
-      <div className="checkcout__right">
-        <Subtotal></Subtotal>
+      <div className="checkcout__right row center">
+        <Subtotal
+          onAdd={onAdd}
+          cartItems={cartItems}
+          onRemove={onRemove}
+        ></Subtotal>
       </div>
     </div>
   );

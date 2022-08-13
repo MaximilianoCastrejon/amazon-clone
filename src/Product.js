@@ -3,9 +3,9 @@ import "./Product.css";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 
-function Product({ title, price, rating, image }) {
+function Product({ id, title, price, rating, image, onAdd, product }) {
   return (
-    <div className="product">
+    <div key={id} className="product">
       <div className="product__info">
         <p className="product__title">{title}</p>
         <p className="product__price">
@@ -26,7 +26,7 @@ function Product({ title, price, rating, image }) {
         </div>
       </div>
       <img src={image} alt="" />
-      <button>Add to basket</button>
+      <button onClick={() => onAdd(product)}>Add to basket</button>
     </div>
   );
 }

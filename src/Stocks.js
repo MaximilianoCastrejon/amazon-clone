@@ -13,20 +13,24 @@ import Product from "./Product.js";
 //   id: 850703190,
 // });
 
-export const Stocks = () => {
-  console.log(data);
+export const Stocks = (props) => {
+  const { onAdd, test } = props;
   return (
     <React.Fragment>
       <div className="wrapper">
-        {data.map((data, key) => {
+        {data.map((product, key) => {
           return (
             <div key={key}>
               {
                 <Product
-                  title={data.title}
-                  price={data.price}
-                  image={data.img}
-                  rating={data.rating}
+                  id={product.id}
+                  title={product.title}
+                  price={product.price}
+                  image={product.img}
+                  rating={product.rating}
+                  onAdd={onAdd}
+                  test={test}
+                  product={product}
                 />
               }
             </div>

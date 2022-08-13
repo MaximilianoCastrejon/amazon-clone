@@ -4,7 +4,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header(props) {
+  const { onAdd, cartItems } = props;
+  const itemsTotal = cartItems.reduce((a, c) => a + c.qty, 0);
+
+  console.log(typeof cartItems);
   return (
     <div className="header">
       <Link to="/">
@@ -35,7 +39,7 @@ function Header() {
           <div className="header__option-basket">
             <ShoppingBasketIcon />
             <span className="header__option-line-two header__basket-count">
-              0
+              {cartItems.length === 0 ? 0 : itemsTotal}
             </span>
           </div>
         </Link>
