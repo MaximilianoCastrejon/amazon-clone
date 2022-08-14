@@ -14,3 +14,48 @@
 .row.center {
   align-items: center;
 }
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.subtotal__items {
+  text-align: center;
+}
+
+.subtotal {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f3f3f3;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+}
+
+button {
+  width: 30%;
+  margin: 0.1rem;
+  cursor: pointer;
+}
+
+.subtotal__checkout-btn {
+  margin-top: 7px;
+}
+
+.subtotal__checkout-btn:hover {
+  box-shadow: 0px 0px 30px -5px rgba(0, 0, 0, 0.52);
+  -webkit-box-shadow: 0px 0px 30px -5px rgba(0, 0, 0, 0.52);
+  -moz-box-shadow: 0px 0px 30px -5px rgba(0, 0, 0, 0.52);
+}
+
+.subtotal__gift {
+  display: flex;
+  align-items: center;
+}
+
+.subtotal__gift > input {
+  margin-right: 5px;
+}

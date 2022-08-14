@@ -16,7 +16,7 @@ function Checkout(props) {
           <h2 className="checkout__title">Your shopping basket</h2>
         </div>
       </div>
-      <div className="checkcout__right row center">
+      <div className="checkcout__right row">
         <Subtotal
           onAdd={onAdd}
           cartItems={cartItems}

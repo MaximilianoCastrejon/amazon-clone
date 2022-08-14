@@ -18,15 +18,21 @@ function Subtotal(props) {
       {cartItems.map((item) => (
         <div key={item.id} className="row">
           <div className="col-2 ">{item.title}</div>
-          <div className="col-2 ">
-            <button onClick={() => onAdd(item)} className="add">
+          <div className="col-2 center">
+            <button
+              onClick={() => onAdd(item)}
+              className="add btn btn-primary btn-sm"
+            >
               +
             </button>
-            <button onClick={() => onRemove(item)} className="remove">
+            <button
+              onClick={() => onRemove(item)}
+              className="remove btn btn-danger btn-sm"
+            >
               -
             </button>
           </div>
-          <div className="col-2 text-right">
+          <div className="col-2 text-right center">
             {item.qty} x ${item.price.toFixed(2)}
           </div>
         </div>
@@ -34,8 +40,8 @@ function Subtotal(props) {
       <CurrencyFormat
         renderText={(value) => (
           <>
-            <p>
-              Subtotal ({cartItems.length === 0 ? 0 : itemsTotal}):
+            <p className="subtotal__items">
+              Total items ({cartItems.length === 0 ? 0 : itemsTotal}):
               {/* <strong>
                 {cartItems.length === 0
                   ? 0
@@ -67,9 +73,20 @@ function Subtotal(props) {
                   <div className="col-2">
                     <strong>Total</strong>
                   </div>
-                  <div className="col-1 text-right">
-                    <strong> ${totalPrice.toFixed(2)}</strong>
-                  </div>
+                  <CurrencyFormat
+                    renderText={(value) => (
+                      <>
+                        <div className="col-1 text-right">
+                          <strong>{value}</strong>
+                        </div>
+                      </>
+                    )}
+                    decimalScale={2}
+                    value={totalPrice}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    prefix={"$"}
+                  />
                 </div>
               </>
             )}
@@ -85,6 +102,8 @@ function Subtotal(props) {
         thousandSeparator={true}
         prefix={"$"}
       />
+
+      <button className="subtotal__checkout-btn">Proceed to checkout</button>
     </div>
   );
 }
