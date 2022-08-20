@@ -67,6 +67,15 @@
   -moz-box-shadow: 0px 0px 48px -23px rgba(0, 0, 0, 0.7) inset;
 }
 
+.product > button:active {
+  box-shadow: 0px 0px 48px -23px rgba(0, 0, 0, 0.7) inset,
+    0px 0px 5px 0px rgba(0, 0, 0, 0.94);
+  -webkit-box-shadow: 0px 0px 48px -23px rgba(0, 0, 0, 0.7) inset,
+    0px 0px 5px 0px rgba(0, 0, 0, 0.94);
+  -moz-box-shadow: 0px 0px 48px -23px rgba(0, 0, 0, 0.7) inset,
+    0px 0px 5px 0px rgba(0, 0, 0, 0.94);
+}
+
 .product__title {
   font-size: 14px;
   text-overflow: ellipsis; /* will make [...] at the end */

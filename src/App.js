@@ -39,6 +39,14 @@ function App() {
       );
     }
   };
+
+  const itemsOfProductRemoved = (id) => {
+    const exists = cartItems.find((x) => x.id === id);
+    if (exists) {
+      // If one left, onRemove   deletes from cart. Set cart items to be all cartItems except the one with the passed id
+      setCartItems(cartItems.filter((x) => x.id !== id));
+    }
+  };
   return (
     <Router>
       <div className="app">
@@ -51,6 +59,7 @@ function App() {
                 <Checkout
                   onAdd={onAdd}
                   onRemove={onRemove}
+                  itemsOfProductRemoved={itemsOfProductRemoved}
                   cartItems={cartItems}
                 ></Checkout>
               </>

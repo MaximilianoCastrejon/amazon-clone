@@ -5,7 +5,7 @@ import { useStateValue } from "./StateProvider";
 import Subtotal from "./Subtotal";
 
 function Checkout(props) {
-  const { cartItems, onAdd, onRemove } = props;
+  const { cartItems, onAdd, onRemove, itemsOfProductRemoved } = props;
   const [{ basket }, dispatch] = useStateValue();
   // Creating variable without duplicates. Doesn't update with change in data
   const uniqueBasketItems = basket?.filter(
@@ -64,7 +64,7 @@ function Checkout(props) {
                   image={item.image}
                   price={item.price}
                   rating={item.rating}
-                  onRemove={onRemove}
+                  itemsOfProductRemoved={itemsOfProductRemoved}
                   cartItems={cartItems}
                 />
               </>

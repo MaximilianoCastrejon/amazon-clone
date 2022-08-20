@@ -11,7 +11,7 @@ function CheckoutProduct({
   price,
   rating,
   hideButton,
-  onRemove,
+  itemsOfProductRemoved,
 }) {
   const [{ basket }, dispatch] = useStateValue();
 
@@ -23,12 +23,18 @@ function CheckoutProduct({
     });
   };
 
+  const removeProduct = () => {
+    dispatch({
+      type: "REMOVE_PRODUCT",
+      id: id,
+    });
+  };
   return (
     <div className="checkoutProduct">
       <img className="checkoutProduct__image" src={image} />
 
       <div className="checkoutProduct__info">
-        <p className="checkoutProduct__title">{title} (2)</p>
+        <p className="checkoutProduct__title">{title}</p>
         <p className="checkoutProduct__price">
           <small>$</small>
           <strong>{price}</strong>
@@ -46,7 +52,16 @@ function CheckoutProduct({
             ))}
         </div>
         {/* Make a function to delete everything from cartItems i.e. the useState hook */}
-        {!hideButton && <button onClick={() => {}}>Remove from Basket</button>}
+        {!hideButton && (
+          <button
+            onClick={() => {
+              removeProduct();
+              itemsOfProductRemoved(id);
+            }}
+          >
+            Remove from Basket
+          </button>
+        )}
       </div>
     </div>
   );
