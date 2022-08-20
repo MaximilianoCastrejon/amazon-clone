@@ -11,6 +11,9 @@
   flex: 2;
 }
 
+.subtotal__title {
+}
+
 .row.center {
   align-items: center;
 }
@@ -33,9 +36,10 @@
   background-color: #f3f3f3;
   border: 1px solid #dddddd;
   border-radius: 3px;
+  height: max-content;
 }
 
-button {
+.subtotal__item-btns > button {
   width: 30%;
   margin: 0.1rem;
   cursor: pointer;

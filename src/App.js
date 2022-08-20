@@ -12,9 +12,9 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
 
   const onAdd = (product) => {
-    console.log("added");
     const exists = cartItems.find((x) => x.id === product.id);
     if (exists) {
+      console.log(exists);
       setCartItems(
         cartItems.map((x) =>
           x.id === product.id ? { ...exists, qty: exists.qty + 1 } : x
@@ -28,7 +28,7 @@ function App() {
   const onRemove = (product) => {
     const exists = cartItems.find((x) => x.id === product.id);
     if (exists.qty === 1) {
-      // If one, removing deletes from cart. Set cart items to be all cartItems except the one with the passed id
+      // If one left, onRemove   deletes from cart. Set cart items to be all cartItems except the one with the passed id
       setCartItems(cartItems.filter((x) => x.id !== product.id));
     } else {
       // If not 1, you can keep substracting

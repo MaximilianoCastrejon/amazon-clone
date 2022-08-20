@@ -8,7 +8,6 @@ function Header(props) {
   const { onAdd, cartItems } = props;
   const itemsTotal = cartItems.reduce((a, c) => a + c.qty, 0);
 
-  console.log(typeof cartItems);
   return (
     <div className="header">
       <Link to="/">

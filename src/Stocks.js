@@ -14,7 +14,7 @@ import Product from "./Product.js";
 // });
 
 export const Stocks = (props) => {
-  const { onAdd, test } = props;
+  const { onAdd } = props;
   return (
     <React.Fragment>
       <div className="wrapper">
@@ -29,7 +29,6 @@ export const Stocks = (props) => {
                   image={product.img}
                   rating={product.rating}
                   onAdd={onAdd}
-                  test={test}
                   product={product}
                 />
               }

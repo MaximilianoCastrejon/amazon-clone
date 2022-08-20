@@ -224,3 +224,36 @@
           </div>
         </div> */
 }
+
+// create action with the type (switch case) and the data
+// export const ANY_ACTION = "ANY_ACTION";
+
+// function actionFun(msg, lastSeenDate) {
+//   return {
+//     type: ANY_ACTION,
+//     msg,
+//     lastSeenDate,
+//   };
+// }
+
+// function to call the dispatch function to send it to reducer
+// export function handleActionFun(msg, lastSeenDate) {
+//   return (dispatch) => {
+//     return dispatch(actionFun(msg, lastSeenDate));
+//   };
+// }
+
+// let chars = [
+//   { id: 1, name: "pablo" },
+//   { id: 2, name: "ed" },
+//   { id: 3, name: "pao" },
+//   { id: 1, name: "pablo" },
+//   { id: 2, name: "pablo" },
+// ];
+
+// let uniqueChars = chars.filter(
+//   (el, index, self) =>
+//     index === self.findIndex((t) => t.id === el.id && t.name === el.name)
+// );
+
+// console.log(uniqueChars);

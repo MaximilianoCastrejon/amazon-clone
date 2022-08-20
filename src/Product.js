@@ -2,8 +2,24 @@ import React from "react";
 import "./Product.css";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
+import { useStateValue } from "./StateProvider";
 
 function Product({ id, title, price, rating, image, onAdd, product }) {
+  const [{ basket }, dispatch] = useStateValue();
+  const addToBasket = () => {
+    // inside dispatch is the action (action creation)
+    dispatch({
+      type: "ADD_TO_BASKET",
+      providerItem: {
+        id: id,
+        title: title,
+        price: price,
+        rating: rating,
+        image: image,
+      },
+    });
+  };
+
   return (
     <div key={id} className="product">
       <div className="product__info">
@@ -26,7 +42,14 @@ function Product({ id, title, price, rating, image, onAdd, product }) {
         </div>
       </div>
       <img src={image} alt="" />
-      <button onClick={() => onAdd(product)}>Add to basket</button>
+      <button
+        onClick={() => {
+          onAdd(product);
+          addToBasket();
+        }}
+      >
+        Add to basket
+      </button>
     </div>
   );
 }

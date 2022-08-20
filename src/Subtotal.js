@@ -3,7 +3,7 @@ import "./Subtotal.css";
 import CurrencyFormat from "react-currency-format";
 
 function Subtotal(props) {
-  const { cartItems, onAdd, onRemove } = props;
+  const { cartItems, onAdd, onRemove, removeFromBasket, addToBasket } = props;
   const itemsPrice = cartItems.reduce(
     (acumulator, current) => acumulator + current.price * current.qty,
     0
@@ -13,20 +13,30 @@ function Subtotal(props) {
   const totalPrice = itemsPrice + taxPrice + shippingPrice;
   const itemsTotal = cartItems.reduce((a, c) => a + c.qty, 0);
 
+  function printItem(item) {
+    console.log(item.img);
+  }
   return (
     <div className="subtotal block col-1">
       {cartItems.map((item) => (
         <div key={item.id} className="row">
-          <div className="col-2 ">{item.title}</div>
-          <div className="col-2 center">
+          <div className="col-2 subtotal__title">{item.title}</div>
+          <div className="col-2 center subtotal__item-btns">
             <button
-              onClick={() => onAdd(item)}
+              onClick={() => {
+                addToBasket(item);
+                printItem(item);
+                onAdd(item);
+              }}
               className="add btn btn-primary btn-sm"
             >
               +
             </button>
             <button
-              onClick={() => onRemove(item)}
+              onClick={() => {
+                onRemove(item);
+                removeFromBasket(item.id);
+              }}
               className="remove btn btn-danger btn-sm"
             >
               -
