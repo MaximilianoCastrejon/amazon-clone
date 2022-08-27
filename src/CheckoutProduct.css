@@ -46,3 +46,26 @@
   -moz-box-shadow: 0px 0px 48px -23px rgba(0, 0, 0, 0.7) inset,
     0px 0px 5px 0px rgba(0, 0, 0, 0.94);
 }
+
+.item-fadeout {
+  -webkit-animation: fadeout 1s linear forwards;
+  animation: fadeout 1s linear forwards;
+}
+
+@-webkit-keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

@@ -6,21 +6,23 @@ import Subtotal from "./Subtotal";
 
 function Checkout(props) {
   const { cartItems, onAdd, onRemove, itemsOfProductRemoved } = props;
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue();
+  console.log(user);
   // Creating variable without duplicates. Doesn't update with change in data
-  const uniqueBasketItems = basket?.filter(
-    (item, index, self) =>
-      index ===
-      self.findIndex(
-        (t) =>
-          t.id === item.id &&
-          (t.title === item.title,
-          t.image === item.image,
-          t.price === item.price,
-          t.rating === item.rating)
-      )
-  );
+  // const uniqueBasketItems = basket?.filter(
+  //   (item, index, self) =>
+  //     index ===
+  //     self.findIndex(
+  //       (t) =>
+  //         t.id === item.id &&
+  //         (t.title === item.title,
+  //         t.image === item.image,
+  //         t.price === item.price,
+  //         t.rating === item.rating)
+  //     )
+  // );
   const basketDuplicateCheck = [];
+
   const addToBasket = (item) => {
     // inside dispatch is the action (action creation)
     dispatch({
@@ -50,6 +52,7 @@ function Checkout(props) {
           alt=""
         />
         <div>
+          <h5>Hello, {user?.email}</h5>
           <h2 className="checkout__title">Your shopping basket</h2>
         </div>
         <div className="chechout__product-cards">

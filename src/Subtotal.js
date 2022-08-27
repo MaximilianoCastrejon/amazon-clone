@@ -13,9 +13,6 @@ function Subtotal(props) {
   const totalPrice = itemsPrice + taxPrice + shippingPrice;
   const itemsTotal = cartItems.reduce((a, c) => a + c.qty, 0);
 
-  function printItem(item) {
-    console.log(item.img);
-  }
   return (
     <div className="subtotal block col-1">
       {cartItems.map((item) => (
@@ -25,7 +22,6 @@ function Subtotal(props) {
             <button
               onClick={() => {
                 addToBasket(item);
-                printItem(item);
                 onAdd(item);
               }}
               className="add btn btn-primary btn-sm"

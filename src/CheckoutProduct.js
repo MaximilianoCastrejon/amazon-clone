@@ -3,6 +3,7 @@ import "./CheckoutProduct.css";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 import { useStateValue } from "./StateProvider";
+import { useState } from "react";
 
 function CheckoutProduct({
   id,
@@ -14,23 +15,46 @@ function CheckoutProduct({
   itemsOfProductRemoved,
 }) {
   const [{ basket }, dispatch] = useStateValue();
+  const [isFadingOut, setIsFadingOut] = useState(false);
 
   const removeFromBasket = () => {
-    // remove the item from the basket
+    // remove one item from the basket
     dispatch({
       type: "REMOVE_FROM_BASKET",
       id: id,
     });
   };
 
-  const removeProduct = () => {
-    dispatch({
-      type: "REMOVE_PRODUCT",
-      id: id,
-    });
+  // HANDLE FADEOUT OF REMOVED ITEM
+  const fadeOut = () => {
+    setIsFadingOut(true);
   };
+  const handleRemoveItem = () => {
+    setIsFadingOut(false);
+  };
+
+  // REMOVING ALL ITEMS OF THE PRODUCT
+  var FADE_TIMEOUT = 1000;
+  const removeProduct = () => {
+    // var productCard = document.getElementsByClassName("checkoutProduct");
+    // var seconds = FADE_TIMEOUT / 1000;
+    // productCard.style.transition = "opacity " + seconds + "s ease";
+
+    // productCard.style.opacity = 0;
+    setTimeout(
+      () =>
+        dispatch({
+          type: "REMOVE_PRODUCT",
+          id: id,
+        }),
+      FADE_TIMEOUT
+    );
+  };
+
   return (
-    <div className="checkoutProduct">
+    <div
+      className={"checkoutProduct " + (isFadingOut ? "item-fadeout" : "item")}
+    >
       <img className="checkoutProduct__image" src={image} />
 
       <div className="checkoutProduct__info">
@@ -54,8 +78,9 @@ function CheckoutProduct({
         {/* Make a function to delete everything from cartItems i.e. the useState hook */}
         {!hideButton && (
           <button
-            onClick={() => {
+            onClick={(event) => {
               removeProduct();
+              fadeOut(setTimeout(() => handleRemoveItem(), FADE_TIMEOUT));
               itemsOfProductRemoved(id);
             }}
           >
