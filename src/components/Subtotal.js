@@ -1,8 +1,11 @@
 import React from "react";
-import "./Subtotal.css";
+import "../static/styles/Subtotal.css";
+import { useNavigate } from "react-router-dom";
 import CurrencyFormat from "react-currency-format";
 
 function Subtotal(props) {
+  const navigate = useNavigate();
+
   const { cartItems, onAdd, onRemove, removeFromBasket, addToBasket } = props;
   const itemsPrice = cartItems.reduce(
     (acumulator, current) => acumulator + current.price * current.qty,
@@ -13,6 +16,9 @@ function Subtotal(props) {
   const totalPrice = itemsPrice + taxPrice + shippingPrice;
   const itemsTotal = cartItems.reduce((a, c) => a + c.qty, 0);
 
+  const navigatePayment = () => {
+    navigate("/payment");
+  };
   return (
     <div className="subtotal block col-1">
       {cartItems.map((item) => (
@@ -109,7 +115,9 @@ function Subtotal(props) {
         prefix={"$"}
       />
 
-      <button className="subtotal__checkout-btn">Proceed to checkout</button>
+      <button className="subtotal__checkout-btn" onClick={navigatePayment}>
+        Proceed to checkout
+      </button>
     </div>
   );
 }

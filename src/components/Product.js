@@ -1,11 +1,11 @@
 import React from "react";
-import "./Product.css";
+import "../static/styles/Product.css";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
-import { useStateValue } from "./StateProvider";
+import { useStateValue } from "../utils/StateProvider";
 
 function Product({ id, title, price, rating, image, onAdd, product }) {
-  const [{ basket }, dispatch] = useStateValue();
+  const [, dispatch] = useStateValue();
   const addToBasket = () => {
     // inside dispatch is the action (action creation)
     dispatch({
@@ -32,12 +32,15 @@ function Product({ id, title, price, rating, image, onAdd, product }) {
           {Array(rating)
             .fill()
             .map((_, i) => (
-              <StarIcon className="product__star"></StarIcon>
+              <StarIcon key={i} className="product__star"></StarIcon>
             ))}
           {Array(5 - rating)
             .fill()
             .map((_, i) => (
-              <StarBorderIcon className="product__star-border"></StarBorderIcon>
+              <StarBorderIcon
+                key={i}
+                className="product__star-border"
+              ></StarBorderIcon>
             ))}
         </div>
       </div>

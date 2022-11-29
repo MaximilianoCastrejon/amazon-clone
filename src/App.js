@@ -1,14 +1,15 @@
 import "./App.css";
-import Header from "./Header";
-import Home from "./Home";
-import Footer from "./Footer";
+import Header from "./layouts/Header";
+import Home from "./pages/Home";
+import Footer from "./layouts/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Checkout from "./Checkout";
-import Login from "./Login";
+import Checkout from "./pages/Checkout";
+import Login from "./pages/Login";
+import Payment from "./pages/Payment";
 import { useState, useEffect } from "react";
-import { auth } from "./firebase.js";
-import { useStateValue } from "./StateProvider";
+import { auth } from "./config/firebase.js";
+import { useStateValue } from "./utils/StateProvider";
 // import { stockData as cartItems } from "./static/MOCK_DATA.js";
 
 function App() {
@@ -97,6 +98,16 @@ function App() {
               </>
             }
           ></Route>
+          <Route
+            path="/payment"
+            element={
+              <>
+                <Header onAdd={onAdd} cartItems={cartItems}></Header>
+                <Payment></Payment>
+                <Footer></Footer>
+              </>
+            }
+          />
 
           <Route
             path="/"

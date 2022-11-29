@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "./firebase.js";
-import "./Login.css";
+import { db, auth } from "../config/firebase.js";
+// import { getAuth } from "firebase/compat/auth";
+import "../static/styles/Login.css";
 
 function Login() {
   // Change URL
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -23,14 +25,25 @@ function Login() {
   const register = (e) => {
     e.preventDefault();
     // firebase register
+
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
+        console.log(auth);
+        const data = {
+          email: email,
+          username: username,
+        };
+        db.collection("users")
+          .add(data)
+          .then((res) => console.log(res));
         if (auth) {
           navigate("/");
         }
       })
       .catch((error) => alert(error.message));
+
+    db.collection("users").get();
   };
   return (
     <div className="login">
@@ -44,6 +57,13 @@ function Login() {
       <div className="login__container">
         <h1>Sign-in</h1>
         <form>
+          <h5>Username</h5>
+          <input
+            name="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
           <h5>E-mail</h5>
           <input
             name="email"

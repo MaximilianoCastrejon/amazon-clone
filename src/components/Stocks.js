@@ -1,6 +1,6 @@
 import React from "react";
-import "./Home.css";
-import { stockData as data } from "./static/MOCK_DATA.js";
+import "../static/styles/Home.css";
+import { stockData as data } from "../static/MOCK_DATA.js";
 import Product from "./Product.js";
 
 // import { Image } from "@shopify/shopify-api/dist/rest-resources/2022-07/index.js";

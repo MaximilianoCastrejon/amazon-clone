@@ -1,19 +1,13 @@
 import React from "react";
-import "./CheckoutProduct.css";
+import "../static/styles/CheckoutProduct.css";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
-import { useStateValue } from "./StateProvider";
+import { useStateValue } from "../utils/StateProvider";
 import { useState } from "react";
 
-function CheckoutProduct({
-  id,
-  image,
-  title,
-  price,
-  rating,
-  hideButton,
-  itemsOfProductRemoved,
-}) {
+function CheckoutProduct(props) {
+  const { id, image, title, price, rating, hideButton, itemsOfProductRemoved } =
+    props;
   const [{ basket }, dispatch] = useStateValue();
   const [isFadingOut, setIsFadingOut] = useState(false);
 
@@ -55,7 +49,7 @@ function CheckoutProduct({
     <div
       className={"checkoutProduct " + (isFadingOut ? "item-fadeout" : "item")}
     >
-      <img className="checkoutProduct__image" src={image} />
+      <img alt="product" className="checkoutProduct__image" src={image} />
 
       <div className="checkoutProduct__info">
         <p className="checkoutProduct__title">{title}</p>

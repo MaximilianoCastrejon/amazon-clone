@@ -1,10 +1,10 @@
 import React from "react";
-import "./Header.css";
+import "../static/styles/Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { Link } from "react-router-dom";
-import { useStateValue } from "./StateProvider";
-import { auth } from "./firebase";
+import { useStateValue } from "../utils/StateProvider";
+import { auth } from "../config/firebase";
 
 function Header(props) {
   const { onAdd, cartItems } = props;
@@ -33,7 +33,9 @@ function Header(props) {
       <div className="header__nav">
         <Link to={!user && "/login"}>
           <div onClick={handleAuthentication} className="header__option">
-            <span className="header__option-line-one">Hello Guest</span>
+            <span className="header__option-line-one">
+              Hello {!user ? "Guest" : null} Guest
+            </span>
             <span className="header__option-line-two">
               {user ? "Sign Out" : "Sign in"}
             </span>

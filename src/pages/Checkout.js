@@ -1,13 +1,12 @@
 import React from "react";
-import "./Checkout.css";
-import CheckoutProduct from "./CheckoutProduct";
-import { useStateValue } from "./StateProvider";
-import Subtotal from "./Subtotal";
+import "../static/styles/Checkout.css";
+import CheckoutProduct from "../components/CheckoutProduct";
+import { useStateValue } from "../utils/StateProvider";
+import Subtotal from "../components/Subtotal.js";
 
 function Checkout(props) {
   const { cartItems, onAdd, onRemove, itemsOfProductRemoved } = props;
   const [{ basket, user }, dispatch] = useStateValue();
-  console.log(user);
   // Creating variable without duplicates. Doesn't update with change in data
   // const uniqueBasketItems = basket?.filter(
   //   (item, index, self) =>
@@ -102,5 +101,9 @@ function Checkout(props) {
     </div>
   );
 }
+
+Checkout.protoTypes = {
+  //https://reactjs.org/docs/typechecking-with-proptypes.html
+};
 
 export default Checkout;
