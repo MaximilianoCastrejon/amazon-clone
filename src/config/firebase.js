@@ -2,9 +2,10 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import env from "react-dotenv";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBMl8N2M7fOW-lXh8Qbze1WX534WQhlvgs",
+  apiKey: `${env.REACT_APP_FIREBASE_API_KEY}`,
   authDomain: "clone-080422.firebaseapp.com",
   projectId: "clone-080422",
   storageBucket: "clone-080422.appspot.com",

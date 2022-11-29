@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import Dropdown from "./Dropdown";
 import { useState, useEffect, useRef } from "react";
+import env from "react-dotenv";
 
 function CreditInfo() {
   //https://www.robinwieruch.de/react-dropdown/
@@ -8,6 +9,8 @@ function CreditInfo() {
   //TODO: create custom hook
   //TODO: make good useEffect
   //TODO: make good useMemo
+  //TODO: make good clean up functions on useEffect
+
   //TODO: save credit info of user
   //TODO: Conect to firebase and hash user data
 
@@ -17,14 +20,22 @@ function CreditInfo() {
     when making requests to an API, because multiple renders can make multiple fetch 
     request which increases costs of API usage.
 
-    It can also be used when an onChange function call (either changing the state, thus triggering any function dependent on that state, or calling directly the function) 
+    It can also be used when an onChange function call (either changing the state,
+    thus triggering any function dependent on that state, or calling directly the 
+    function) 
 
-    Nocierto. Por el re-render del componente que noutiliza Memo, se vuelve a realizar la función de filtro 
+    Nocierto. Por el re-render del componente que noutiliza Memo, se vuelve a realizar
+    la función de filtro 
 
-    When passing the property to a component and not memoizing that property, the whole component gets re-render because of that one property
+    When passing the property to a component and not memoizing that property, the
+    whole component gets re-render because of that one property
   */
 
-  /*useCallback is used when you want the browser to memoize the function to not execute it on each render. The differences with useMemo relies in that useMemo is used to return something and save it in a variable, while useCallback would be used to prevent a variable from changing state based on a re-render and it doesn't return anything*/
+  /*useCallback is used when you want the browser to memoize the function to not 
+  execute it on each render. The differences with useMemo relies in that useMemo is 
+  used to return something and save it in a variable, while useCallback would be used
+  to prevent a variable from changing state based on a re-render and it doesn't return
+  anything*/
 
   const [paymentMethod, setPaymentMethod] = useState("Visa");
   const handlePayMethod = (e) => {
@@ -32,7 +43,6 @@ function CreditInfo() {
 
     console.count("Changed card image");
   };
-  console.log(process.env.REACT_APP_FIREBASE_API_KEY);
 
   useEffect(() => {
     //Change innerHTML to current target (already saved in paymentMethod)
@@ -122,3 +132,22 @@ function CreditInfo() {
 }
 
 export default CreditInfo;
+
+export function useFetch(url) {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState();
+  const [error, setError] = useState();
+
+  useEffect(() => {
+    const controller = new AbortController();
+    setLoading(true);
+    fetch(url, { signal: controller.signal })
+      .then(setData)
+      .catch(setError)
+      .finally(() => setLoading(false));
+    return () => {
+      controller.abort();
+    };
+  }, [url]);
+  return { loading, data, error };
+}
