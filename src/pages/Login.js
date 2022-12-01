@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { db, auth } from "../config/firebase.js";
 // import { getAuth } from "firebase/compat/auth";
@@ -7,15 +7,21 @@ import "../static/styles/Login.css";
 function Login() {
   // Change URL
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
+  const usernameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
 
   const signIn = (e) => {
     e.preventDefault();
     // firebase login
+    const user = {
+      username: usernameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
     auth
-      .signInWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(user.email, user.password)
       .then((auth) => {
         navigate("/");
       })
@@ -25,14 +31,18 @@ function Login() {
   const register = (e) => {
     e.preventDefault();
     // firebase register
-
+    const user = {
+      username: usernameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
     auth
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(user.email, user.password)
       .then((auth) => {
         console.log(auth);
         const data = {
-          email: email,
-          username: username,
+          email: user.email,
+          username: user.username,
         };
         db.collection("users")
           .add(data)
@@ -58,26 +68,11 @@ function Login() {
         <h1>Sign-in</h1>
         <form>
           <h5>Username</h5>
-          <input
-            name="username"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+          <input name="username" type="text" ref={usernameRef} />
           <h5>E-mail</h5>
-          <input
-            name="email"
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <input name="email" type="text" ref={emailRef} />
           <h5>Password</h5>
-          <input
-            name="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <input name="password" type="password" ref={passwordRef} />
           <button type="submit" className="login__signin-btn" onClick={signIn}>
             Sign in
           </button>
