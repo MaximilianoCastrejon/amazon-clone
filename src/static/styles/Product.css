@@ -1,0 +1,86 @@
+.product__star {
+  font-size: 20px !important;
+  color: rgb(235, 235, 0);
+}
+
+.product__star-border {
+  font-size: 20px !important;
+
+  color: rgb(176, 176, 176);
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 100px;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+
+/* RESIZING */
+/* https://stackoverflow.com/questions/61533780/how-to-use-css-transform-scale-to-fit-child-div-to-parent-div-responsively-i */
+/* https://gist.github.com/liudmil-mitev/3ea474ef0b387a8cc2b9ea6bdeb8db7c */
+/* https://stackoverflow.com/questions/18750769/scale-div-with-its-content-to-fit-window */
+
+.product > img {
+  width: 100%;
+  margin: 0px;
+}
+
+.product__info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.product__info > p {
+  padding: 5px;
+  padding-bottom: 0px;
+}
+
+.product__info > div {
+  padding: 5px;
+  padding-bottom: 0px;
+}
+.product__price {
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.product > button {
+  background-color: #f0c14b;
+  border: 1px solid;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-color: #a88734 #9c7e31 #846a29;
+  color: #111;
+}
+
+.product > button:hover {
+  background-color: #c39d3d;
+  box-shadow: 0px 0px 48px -23px rgba(0, 0, 0, 0.7) inset;
+  -webkit-box-shadow: 0px 0px 48px -23px rgba(0, 0, 0, 0.7) inset;
+  -moz-box-shadow: 0px 0px 48px -23px rgba(0, 0, 0, 0.7) inset;
+}
+
+.product > button:active {
+  box-shadow: 0px 0px 48px -23px rgba(0, 0, 0, 0.7) inset,
+    0px 0px 5px 0px rgba(0, 0, 0, 0.94);
+  -webkit-box-shadow: 0px 0px 48px -23px rgba(0, 0, 0, 0.7) inset,
+    0px 0px 5px 0px rgba(0, 0, 0, 0.94);
+  -moz-box-shadow: 0px 0px 48px -23px rgba(0, 0, 0, 0.7) inset,
+    0px 0px 5px 0px rgba(0, 0, 0, 0.94);
+}
+
+.product__title {
+  font-size: 14px;
+  text-overflow: ellipsis; /* will make [...] at the end */
+  width: 100%; /* change to your preferences */
+  white-space: nowrap; /* paragraph to one line */
+  overflow: hidden; /* older browsers */
+  margin-bottom: 0;
+}
