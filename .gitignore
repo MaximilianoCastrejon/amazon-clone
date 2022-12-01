@@ -25,4 +25,4 @@ yarn-error.log*
 
 # keys
 .env
-/public/env.js
+./public/env.js
