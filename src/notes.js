@@ -257,3 +257,30 @@
 // );
 
 // console.log(uniqueChars);
+
+/* ****************************************************** */
+// HOOKS NOTES
+/* ****************************************************** */
+
+/*When to use MEMO:
+    One should use memo only when re-rendering the items is slower that the validation
+    makes in the background (such as is the case with long lists of infromation) or 
+    when making requests to an API, because multiple renders can make multiple fetch 
+    request which increases costs of API usage.
+
+    It can also be used when an onChange function call (either changing the state,
+    thus triggering any function dependent on that state, or calling directly the 
+    function) 
+
+    Nocierto. Por el re-render del componente que noutiliza Memo, se vuelve a realizar
+    la función de filtro 
+
+    When passing the property to a component and not memoizing that property, the
+    whole component gets re-render because of that one property
+  */
+
+/*useCallback is used when you want the browser to memoize the function to not 
+  execute it on each render. The differences with useMemo relies in that useMemo is 
+  used to return something and save it in a variable, while useCallback would be used
+  to prevent a variable from changing state based on a re-render and it doesn't return
+  anything*/

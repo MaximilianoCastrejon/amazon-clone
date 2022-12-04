@@ -15,7 +15,7 @@ const Footer = () => {
             <a href="/" className="d-flex align-items-center p-0 text-dark">
               <img
                 alt="logo"
-                src="https://i.pinimg.com/originals/01/ca/da/01cada77a0a7d326d85b7969fe26a728.jpg"
+                src="https://www.freeiconspng.com/thumbs/amazon-icon/amazon-icon--socialmedia-iconset--uiconstock-0.png"
                 width="60px"
               />
               <span className="ml-3 h5 font-weight-bold">Amazon</span>

@@ -12,6 +12,13 @@ function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
 
+  /************************************** */
+  // TODO: CUSTOM AUTH SYSTEM
+  //https://firebase.google.com/docs/auth/admin/create-custom-tokens
+  //https://firebase.google.com/docs/auth/web/custom-auth
+  //https://firebase.google.com/docs/auth/web/manage-users
+  /************************************** */
+
   const signIn = (e) => {
     e.preventDefault();
     // firebase login
@@ -28,6 +35,7 @@ function Login() {
       .catch((error) => alert(error.message));
   };
 
+  console.log(auth);
   const register = (e) => {
     e.preventDefault();
     // firebase register

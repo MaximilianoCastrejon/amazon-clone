@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../static/styles/Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../utils/StateProvider";
 import { auth } from "../config/firebase";
+import HamburgerMenu from "../components/HamburgerMenu";
 
 function Header(props) {
   const { onAdd, cartItems } = props;
@@ -16,6 +17,25 @@ function Header(props) {
       auth.signOut();
     }
   };
+
+  const [windowSize, setWindowWidth] = useState(getWindowWidth());
+
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowWidth(getWindowWidth());
+    }
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
+  function getWindowWidth() {
+    const { innerWidth, innerHeight } = window;
+    return { innerWidth };
+  }
 
   return (
     <div className="header">
@@ -31,24 +51,32 @@ function Header(props) {
         <SearchIcon className="header__search-icon" />
       </div>
       <div className="header__nav">
-        <Link to={!user && "/login"}>
-          <div onClick={handleAuthentication} className="header__option">
-            <span className="header__option-line-one">
-              Hello {!user ? "Guest" : null} Guest
-            </span>
-            <span className="header__option-line-two">
-              {user ? "Sign Out" : "Sign in"}
-            </span>
-          </div>
-        </Link>
-        <div className="header__option">
-          <span className="header__option-line-one">Returns</span>
-          <span className="header__option-line-two">& Orders</span>
-        </div>
-        <div className="header__option">
-          <span className="header__option-line-one">Your</span>
-          <span className="header__option-line-two">Prime</span>
-        </div>
+        {windowSize.innerWidth <= 600 ? (
+          <HamburgerMenu></HamburgerMenu>
+        ) : (
+          <>
+            <Link to={!user && "/login"}>
+              <div onClick={handleAuthentication} className="header__option">
+                <span className="header__option-line-one">
+                  Hello {!user ? "Guest" : user.email}
+                </span>
+                <span className="header__option-line-two">
+                  {user ? "Sign Out" : "Sign in"}
+                </span>
+              </div>
+            </Link>
+            <div className="header__option">
+              <span className="header__option-line-one">Returns</span>
+              <span className="header__option-line-two">& Orders</span>
+            </div>
+            <div className="header__option">
+              <span className="header__option-line-one">Your</span>
+              <span className="header__option-line-two">Prime</span>
+            </div>
+          </>
+        )}
+      </div>
+      <div className="header__nav">
         <Link to="/checkout">
           <div className="header__option-basket">
             <ShoppingBasketIcon />

@@ -3,6 +3,8 @@
   padding: 15px;
   background-color: white;
   height: max-content;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* Give padding to flex container div's to give smth like a margin */
@@ -20,5 +22,11 @@
   border-bottom: 1px solid lightgray;
 }
 
-.checkout__right {
+.checkout__left {
+  max-width: 595px;
+}
+
+.chechout__product-cards {
+  max-height: 420px;
+  overflow-y: scroll;
 }

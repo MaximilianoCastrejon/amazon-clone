@@ -3,23 +3,24 @@ import "../static/styles/Checkout.css";
 import CheckoutProduct from "../components/CheckoutProduct";
 import { useStateValue } from "../utils/StateProvider";
 import Subtotal from "../components/Subtotal.js";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function Checkout(props) {
   const { cartItems, onAdd, onRemove, itemsOfProductRemoved } = props;
   const [{ basket, user }, dispatch] = useStateValue();
-  // Creating variable without duplicates. Doesn't update with change in data
-  // const uniqueBasketItems = basket?.filter(
-  //   (item, index, self) =>
-  //     index ===
-  //     self.findIndex(
-  //       (t) =>
-  //         t.id === item.id &&
-  //         (t.title === item.title,
-  //         t.image === item.image,
-  //         t.price === item.price,
-  //         t.rating === item.rating)
-  //     )
-  // );
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+
   const basketDuplicateCheck = [];
 
   const addToBasket = (item) => {
@@ -71,21 +72,6 @@ function Checkout(props) {
                 />
               </>
             );
-
-            // const exists = uniqueBasketItems.find((x) => x.id === item.id);
-            // if (exists) {
-            //   return (
-            //     <>
-            //       <CheckoutProduct
-            //         id={item.id}
-            //         title={item.title}
-            //         image={item.image}
-            //         price={item.price}
-            //         rating={item.rating}
-            //       />
-            //     </>
-            //   );
-            // }
           })}
         </div>
       </div>
